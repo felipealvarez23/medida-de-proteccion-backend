@@ -1,0 +1,29 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "medida_de_proteccion_backend"
+  profiles:
+    include: null
+    active: "dev-local"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev-local
+
+server:
+  port: 8080
+
+db:
+  schema: "protection_measure_schema"
+  password: "Delta231092#!."
+  dbname: "protection_measure_db"
+  port: "5432"
+  host: "localhost"
+  username: "postgres"
+  secret:
+    region: "us-east-1"
+    name: "vinculacion-transversal-front-dev-secretrds-CNX"
+    url: jdbc:postgresql://%s:%s/%s?currentSchema=protection_measure_schema
