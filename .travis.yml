@@ -12,6 +12,11 @@ notification:
   email:
     recipients:
       felipealvarez23@outlook.com
+addons:
+  sonarcloud:
+    organization: felipealvarez23
+    token: c64191b586e3b3b4d3bada069d28a21ef46bc160
 script:
   # other script steps might be done before running the actual analysis
   - ./gradlew clean build jacocoMergedReport
+  - sonar-scanner
