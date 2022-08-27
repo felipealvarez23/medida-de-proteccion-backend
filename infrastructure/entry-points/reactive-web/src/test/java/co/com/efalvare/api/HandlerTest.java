@@ -40,7 +40,7 @@ class HandlerTest {
 
     private ApiRequest<ApiStartRequest> apiRequest;
 
-    private final String endpoint = "/medida-de-proteccion/api/v1/start-request";
+    private final static String endpoint = "/medida-de-proteccion/api/v1/start-request";
 
     @BeforeEach
     public void setUp() {
