@@ -4,7 +4,7 @@ on:
     branches:
       - trunk
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
@@ -16,3 +16,5 @@ jobs:
         run: chmod +x gradlew
       - name: Unit test
         run: ./gradlew clean build jacocoMergedReport
+      - name: Sonar scan
+        run: sonar-scanner
