@@ -27,8 +27,6 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class HandlerTest {
 
-    private RouterRest router;
-
     private WebTestClient client;
 
     @Mock
@@ -42,6 +40,8 @@ class HandlerTest {
 
     private ApiRequest<ApiStartRequest> apiRequest;
 
+    private final String endpoint = "/medida-de-proteccion/api/v1/start-request";
+
     @BeforeEach
     public void setUp() {
         ApiStartRequest startRequest = ApiStartRequest.builder()
@@ -53,7 +53,7 @@ class HandlerTest {
         apiRequest = ApiRequest.<ApiStartRequest>builder()
                 .data(startRequest)
                 .build();
-        router = new RouterRest();
+        RouterRest router = new RouterRest();
         client = WebTestClient
                 .bindToRouterFunction(router.routerFunction(handler))
                 .webFilter(new SetRemoteAddressWebFilter("127.0.0.1"))
@@ -70,7 +70,7 @@ class HandlerTest {
         when(mapper.mapperToResponse(any(StartRequestResponse.class)))
                 .thenReturn(ApiStartRequestResponse.builder().build());
         client.post()
-                .uri("/medida-de-proteccion/api/v1/start-request")
+                .uri(endpoint)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(apiRequest), ApiRequest.class)
@@ -88,7 +88,7 @@ class HandlerTest {
         when(mapper.mapperToEntity(any(ApiStartRequest.class)))
                 .thenReturn(new StartRequest());
         client.post()
-                .uri("/medida-de-proteccion/api/v1/start-request")
+                .uri(endpoint)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(apiRequest), ApiRequest.class)
@@ -104,7 +104,7 @@ class HandlerTest {
         client = client.mutateWith((builder, httpHandlerBuilder, connector) ->
                 httpHandlerBuilder.filter(new SetRemoteAddressWebFilter(null)));
         client.post()
-                .uri("/medida-de-proteccion/api/v1/start-request")
+                .uri(endpoint)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(apiRequest), ApiRequest.class)
