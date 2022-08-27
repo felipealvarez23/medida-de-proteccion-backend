@@ -46,7 +46,7 @@ class ProtectionMeasureUseCaseTest {
                 .expectComplete()
                 .verify();
         verify(repository, times(1))
-                .searchProtectionMeasure("10526484");
+                .searchProtectionMeasure("10526485");
     }
 
     @Test
