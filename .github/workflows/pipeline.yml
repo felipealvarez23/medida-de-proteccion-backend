@@ -16,5 +16,5 @@ jobs:
         run: chmod +x gradlew
       - name: Unit test
         run: ./gradlew clean build jacocoMergedReport
-      - name: Sonar scan
-        run: ./gradlew sonarqube
+      - name: SonarCloud scan
+        run: sonarsource/sonarcloud-github-action@master
