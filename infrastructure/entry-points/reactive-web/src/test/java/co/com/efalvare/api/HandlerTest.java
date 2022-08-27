@@ -40,7 +40,7 @@ class HandlerTest {
 
     private ApiRequest<ApiStartRequest> apiRequest;
 
-    private final static String endpoint = "/medida-de-proteccion/api/v1/start-request";
+    private static final String ENDPOINT = "/medida-de-proteccion/api/v1/start-request";
 
     @BeforeEach
     public void setUp() {
@@ -70,7 +70,7 @@ class HandlerTest {
         when(mapper.mapperToResponse(any(StartRequestResponse.class)))
                 .thenReturn(ApiStartRequestResponse.builder().build());
         client.post()
-                .uri(endpoint)
+                .uri(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(apiRequest), ApiRequest.class)
@@ -88,7 +88,7 @@ class HandlerTest {
         when(mapper.mapperToEntity(any(ApiStartRequest.class)))
                 .thenReturn(new StartRequest());
         client.post()
-                .uri(endpoint)
+                .uri(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(apiRequest), ApiRequest.class)
@@ -104,7 +104,7 @@ class HandlerTest {
         client = client.mutateWith((builder, httpHandlerBuilder, connector) ->
                 httpHandlerBuilder.filter(new SetRemoteAddressWebFilter(null)));
         client.post()
-                .uri(endpoint)
+                .uri(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(apiRequest), ApiRequest.class)
