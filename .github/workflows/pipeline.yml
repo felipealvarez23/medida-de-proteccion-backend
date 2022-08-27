@@ -17,4 +17,4 @@ jobs:
       - name: Unit test
         run: ./gradlew clean build jacocoMergedReport
       - name: Sonar scan
-        run: sonar-scanner
+        run: ./gradlew sonarqube
