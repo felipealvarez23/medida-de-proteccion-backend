@@ -32,7 +32,7 @@ class ProtectionMeasureUseCaseTest {
 
     @Test
     @DisplayName("should search for some existing protection measure related to the document number")
-    public void createProtectionMeasureSearchPMTest() {
+    void createProtectionMeasureSearchPMTest() {
         ProtectionMeasure protectionMeasure = ProtectionMeasure.builder()
                 .documentNumber("10526485")
                 .build();
@@ -52,7 +52,7 @@ class ProtectionMeasureUseCaseTest {
     @Test
     @DisplayName("Given no protection measure related to the document number" +
             "then should create the protection measure ")
-    public void createProtectionMeasure() {
+    void createProtectionMeasure() {
         ProtectionMeasure protectionMeasure = ProtectionMeasure.builder()
                 .documentNumber("10526486")
                 .build();
@@ -73,7 +73,7 @@ class ProtectionMeasureUseCaseTest {
     @DisplayName("Given exists a protection measure related to the document number" +
             "and it was not created on the allowed time " +
             "then should return a controlled exception")
-    public void createProtectionMeasureNotAllowedTime() {
+    void createProtectionMeasureNotAllowedTime() {
         ProtectionMeasure protectionMeasure = ProtectionMeasure.builder()
                 .createdDate(LocalDateTime.now())
                 .documentNumber("10526489")
@@ -91,7 +91,7 @@ class ProtectionMeasureUseCaseTest {
     @DisplayName("Given exists a protection measure related to the document number" +
             "and it was created on the allowed time " +
             "then should return a new protection measure")
-    public void createProtectionMeasureAllowedTime() {
+    void createProtectionMeasureAllowedTime() {
         ProtectionMeasure protectionMeasure = ProtectionMeasure.builder()
                 .createdDate(LocalDateTime.of(2022, Month.JANUARY, 1, 7,0))
                 .documentNumber("10526488")
@@ -110,7 +110,7 @@ class ProtectionMeasureUseCaseTest {
     @Test
     @DisplayName("When a unknown error is launched " +
             "then should return a controlled exception")
-    public void createProtectionMeasureUnknownError() {
+    void createProtectionMeasureUnknownError() {
         ProtectionMeasure protectionMeasure = ProtectionMeasure.builder()
                 .createdDate(LocalDateTime.of(2022, Month.JANUARY, 1, 7,0))
                 .documentNumber("10526481")
