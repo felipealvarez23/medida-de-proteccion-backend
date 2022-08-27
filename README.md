@@ -1,5 +1,3 @@
-![Build Status](https://app.travis-ci.com/felipealvarez23/medida-de-proteccion-backend.svg?branch=trunk)
-
 # Proyecto Base Implementando Clean Architecture
 
 ## Antes de Iniciar
