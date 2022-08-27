@@ -21,13 +21,25 @@ public class ProtectionMeasureData {
     @Column("request_id")
     private UUID requestId;
 
-    @Column("request_type")
-    private String requestType;
+    private String type;
 
     private String state;
 
-    @Column("created_date")
+    private String step;
+
+    private String ip;
+
+    @Column("contact_info")
+    private String contactInfo;
+
+    @Column("document_type")
+    private String documentType;
+
+    @Column("document_number")
+    private String documentNumber;
+
     @CreatedDate
+    @Column("created_date")
     private LocalDateTime createdDate;
 
 }

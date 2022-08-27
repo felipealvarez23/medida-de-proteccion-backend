@@ -1,13 +1,16 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project( ':mq-sender')
 	implementation project( ':reactive-web')
 	implementation project( ':r2dbc-postgresql')
     implementation project(':model')
     implementation project(':usecase')
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'com.github.bancolombia:aws-secrets-manager-async:3.0.0'
     implementation 'org.reactivecommons.utils:object-mapper:0.1.0'
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.reactivecommons:async-commons-rabbit-starter:1.0.5'
    // runtimeOnly('org.springframework.boot:spring-boot-devtools')
 }
 

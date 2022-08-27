@@ -1,4 +1,4 @@
-package co.com.efalvare.api.model.protectionmeasure;
+package co.com.efalvare.api.model.startrequest;
 
 import lombok.*;
 
@@ -9,6 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class ProtectionMeasureResponse {
+public class ApiStartRequestResponse {
     private UUID requestId;
+    private String type;
 }

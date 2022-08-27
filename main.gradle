@@ -59,6 +59,20 @@ task jacocoMergedReport(type: JacocoReport) {
         csv.enabled false
         html.enabled true
     }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    '**/efalvare/MainApplication**',
+                    '**/efalvare/**/helper/**',
+                    '**/efalvare/helper/**',
+                    '**/efalvare/config/**',
+                    '**/efalvare/**/config/**',
+                    '**/efalvare/**/mapper/**',
+                    '**/efalvare/model/**',
+                    '**/efalvare/**/model/**'
+            ],)
+        }))
+    }
 }
 
 tasks.withType(JavaCompile) {
