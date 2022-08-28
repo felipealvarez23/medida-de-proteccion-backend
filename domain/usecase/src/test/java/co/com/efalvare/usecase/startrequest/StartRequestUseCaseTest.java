@@ -30,7 +30,7 @@ class StartRequestUseCaseTest {
 
     @Test
     @DisplayName("should create a protection measure")
-    public void startRequest() {
+    void startRequest() {
         StartRequest request = StartRequest.builder()
                 .documentNumber("1052397500")
                 .contactInfo("3058507458")
