@@ -18,4 +18,4 @@ jobs:
         run: ./gradlew clean build jacocoMergedReport
       - name: Sonar scan
         run: ./gradlew sonarqube |
-          sonar.coverage.jacoco.xmlReportPaths=**/build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
+          sonar.coverage.jacoco.xmlReportPaths=../../build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
