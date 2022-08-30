@@ -22,9 +22,10 @@ sonarqube {
         property "sonar.sourceEnconding", "UTF-8"
         property "sonar.modules", "${modules.join(',')}"
         property "sonar.sources", "src,deployment,settings.gradle,main.gradle,build.gradle,${modules.collect { "${it}/build.gradle" }.join(',')}"
-        property "sonar.test", "src/test"
+        property "sonar.test", ""
         property "sonar.java.binaries", ""
         property "sonar.junit.reportsPath", ""
+        property "sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacocoMergedReport/jacocoMergedReport.xml"
         property "sonar.java.coveragePlugin", "jacoco"
         property "sonar.coverage.jacoco.xmlReportPaths", ""
     }
