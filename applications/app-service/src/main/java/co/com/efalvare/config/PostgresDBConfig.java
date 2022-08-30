@@ -11,26 +11,26 @@ import software.amazon.awssdk.regions.Region;
 @Configuration
 public class PostgresDBConfig {
 
-    @Value("${db.password}")
+    @Value("${db.password:}")
     private String password;
 
-    @Value("${db.dbname}")
+    @Value("${db.dbname:}")
     private String dbname;
 
-    @Value("${db.port}")
+    @Value("${db.port:}")
     private Integer port;
 
-    @Value("${db.host}")
+    @Value("${db.host:}")
     private String host;
 
-    @Value("${db.username}")
+    @Value("${db.username:}")
     private String username;
 
     @Value("${spring.profiles.active}")
     private String perfil;
 
     @Bean
-    public DBSecretModel getDBSecretManager(@Value("${db.secret.region}") String region, @Value("${db.secret.name}") String secretName ) {
+    public DBSecretModel getDBSecretManager(@Value("${db.secret.region:}") String region, @Value("${db.secret.name:}") String secretName ) {
         if (this.perfil.equals("dev-local") || this.perfil.equals("test"))
             return dbSecretModelLocal();
         else
