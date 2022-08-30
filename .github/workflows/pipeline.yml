@@ -17,5 +17,4 @@ jobs:
       - name: Unit test
         run: ./gradlew clean build jacocoMergedReport
       - name: Sonar scan
-        run: ./gradlew sonarqube |
-          sonar.coverage.jacoco.xmlReportPaths=../../build/reports/jacoco/jacocoMergedReport/jacocoMergedReport.xml
+        run: ./gradlew sonarqube
