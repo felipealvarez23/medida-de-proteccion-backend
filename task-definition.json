@@ -29,7 +29,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "109069933473.dkr.ecr.us-east-1.amazonaws.com/medida-de-proteccion-ecr",
+      "image": "109069933473.dkr.ecr.us-east-1.amazonaws.com/medida-de-proteccion-ecr:154f0448cb538e1dd83fcdee74eeb75ea918b091",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -56,7 +56,7 @@
     "EXTERNAL",
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:109069933473:task-definition/medida-de-proteccion-td:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:109069933473:task-definition/medida-de-proteccion-td:14",
   "family": "medida-de-proteccion-td",
   "requiresAttributes": [
     {
@@ -73,7 +73,7 @@
   "networkMode": null,
   "runtimePlatform": null,
   "cpu": "1024",
-  "revision": 1,
+  "revision": 14,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
