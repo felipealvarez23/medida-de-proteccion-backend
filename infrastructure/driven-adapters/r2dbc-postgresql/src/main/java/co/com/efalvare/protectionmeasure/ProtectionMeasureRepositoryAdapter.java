@@ -43,6 +43,8 @@ public class ProtectionMeasureRepositoryAdapter extends AdapterOperations<Protec
                 .map(this::toEntity)
                 .switchIfEmpty(Mono.error(()-> new ProtectionMeasureException(ERROR_SEARCH_PRO_MEASURE_CODE,
                         ERROR_SEARCH_PRO_MEASURE)))
+                .doOnError(e-> !(e instanceof ApiError),
+                        e -> log.error("Error al consultar la medida de proteccion: [{}]", e.getMessage()))
                 .onErrorMap(e-> !(e instanceof ApiError), e -> new ProtectionMeasureException(ERROR_RUNTIME_CODE,
                         "Error al consultar la medida de proteccion"));
     }
