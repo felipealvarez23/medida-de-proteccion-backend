@@ -23,7 +23,6 @@ public class PostgreSQLConnectionPool {
 
 	@Bean
 	public ConnectionPool getConnectionConfig(DBSecretModel dbSecretModel) {
-        // TODO: change these properties for yours
 		PostgresqlConnectionProperties pgProperties = new PostgresqlConnectionProperties();
 		pgProperties.setDatabase(dbSecretModel.getDbname());
 		pgProperties.setHost(dbSecretModel.getHost());
