@@ -120,7 +120,7 @@ class ProtectionMeasureUseCaseTest {
         Mono<ProtectionMeasure> protectionMeasureMono = useCase.createProtectionMeasure(protectionMeasure);
         StepVerifier.create(protectionMeasureMono)
                 .expectErrorMatches(e-> e instanceof ProtectionMeasureException &&
-                        e.getMessage().equals("Error validando medidas de protección previas"))
+                        e.getMessage().equals("Error validando medidas de protección existentes"))
                 .verify();
 
     }

@@ -1,8 +1,9 @@
 package co.com.efalvare.api;
 
+import co.com.efalvare.api.handler.StartRequestHandler;
 import co.com.efalvare.api.model.commons.ApiRequest;
 import co.com.efalvare.api.model.mapper.StartRequestMapper;
-import co.com.efalvare.api.model.startrequest.ApiStartRequest;
+import co.com.efalvare.api.model.startrequest.ApiStartRequestData;
 import co.com.efalvare.api.model.startrequest.ApiStartRequestResponse;
 import co.com.efalvare.model.api.startrequest.StartRequest;
 import co.com.efalvare.model.api.startrequest.StartRequestResponse;
@@ -17,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.validation.Validator;
 import reactor.core.publisher.Mono;
 import utils.SetRemoteAddressWebFilter;
 
@@ -25,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class HandlerTest {
+class StartRequestHandlerTest {
 
     private WebTestClient client;
 
@@ -35,22 +37,25 @@ class HandlerTest {
     @Mock
     private StartRequestUseCase startRequestUseCase;
 
-    @InjectMocks
-    private Handler handler;
+    @Mock
+    private Validator validator;
 
-    private ApiRequest<ApiStartRequest> apiRequest;
+    @InjectMocks
+    private StartRequestHandler handler;
+
+    private ApiRequest<ApiStartRequestData> apiRequest;
 
     private static final String ENDPOINT = "/medida-de-proteccion/api/v1/start-request";
 
     @BeforeEach
     public void setUp() {
-        ApiStartRequest startRequest = ApiStartRequest.builder()
+        ApiStartRequestData startRequest = ApiStartRequestData.builder()
                 .documentNumber("1052397500")
                 .documentType("DOCUMENT_TYPE_CC")
                 .contactInfo("3058507458")
                 .type("01")
                 .build();
-        apiRequest = ApiRequest.<ApiStartRequest>builder()
+        apiRequest = ApiRequest.<ApiStartRequestData>builder()
                 .data(startRequest)
                 .build();
         RouterRest router = new RouterRest();
@@ -65,7 +70,7 @@ class HandlerTest {
     void startRequest() {
         when(startRequestUseCase.startRequest(any(StartRequest.class)))
                 .thenReturn(Mono.just(new StartRequestResponse()));
-        when(mapper.mapperToEntity(any(ApiStartRequest.class)))
+        when(mapper.mapperToEntity(any(ApiStartRequestData.class)))
                 .thenReturn(new StartRequest());
         when(mapper.mapperToResponse(any(StartRequestResponse.class)))
                 .thenReturn(ApiStartRequestResponse.builder().build());
@@ -85,7 +90,7 @@ class HandlerTest {
     void startRequestError() {
         when(startRequestUseCase.startRequest(any(StartRequest.class)))
                 .thenReturn(Mono.error(()-> new ProtectionMeasureException(ERROR_RUNTIME_CODE,"")));
-        when(mapper.mapperToEntity(any(ApiStartRequest.class)))
+        when(mapper.mapperToEntity(any(ApiStartRequestData.class)))
                 .thenReturn(new StartRequest());
         client.post()
                 .uri(ENDPOINT)
@@ -103,6 +108,8 @@ class HandlerTest {
     void startRequestIPError() {
         client = client.mutateWith((builder, httpHandlerBuilder, connector) ->
                 httpHandlerBuilder.filter(new SetRemoteAddressWebFilter(null)));
+        when(mapper.mapperToEntity(any(ApiStartRequestData.class)))
+                .thenReturn(new StartRequest());
         client.post()
                 .uri(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)

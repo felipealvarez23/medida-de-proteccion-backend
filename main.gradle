@@ -69,7 +69,8 @@ task jacocoMergedReport(type: JacocoReport) {
                     '**/efalvare/**/config/**',
                     '**/efalvare/**/mapper/**',
                     '**/efalvare/model/**',
-                    '**/efalvare/**/model/**'
+                    '**/efalvare/**/model/**',
+                    '**/efalvare/**/utils/**'
             ],)
         }))
     }

@@ -17,8 +17,9 @@ import static co.com.efalvare.model.constant.ErrorDescription.ERROR_ALREADY_EXIS
 @RequiredArgsConstructor
 public class ProtectionMeasureUseCase {
 
-    private static final Logger LOGGER = Logger.getLogger(ProtectionMeasureUseCase.class.getName());
     private final ProtectionMeasureRepository repository;
+
+    private static final Logger LOGGER = Logger.getLogger(ProtectionMeasureUseCase.class.getName());
 
     public Mono<ProtectionMeasure> createProtectionMeasure(ProtectionMeasure protectionMeasure) {
         return Mono.just(protectionMeasure)
@@ -35,13 +36,13 @@ public class ProtectionMeasureUseCase {
                 .map(proMeasure -> protectionMeasure)
                 .switchIfEmpty(Mono.error(() -> new ProtectionMeasureException(ERROR_ALREADY_EXIST_CODE,ERROR_ALREADY_EXIST)))
                 .doOnError(e -> e instanceof ProtectionMeasureException && ERROR_ALREADY_EXIST_CODE.equals(((ProtectionMeasureException) e).getCode()),
-                        e -> LOGGER.log(Level.SEVERE, "El cliente[{0}] ya ha iniciado una solicitud recientemente",
+                        e -> LOGGER.log(Level.SEVERE, "Ya se ha iniciado una solicitud recientemente con el numero de documento [{}]",
                                 protectionMeasure.getDocumentNumber()))
                 .onErrorResume(e -> e instanceof ProtectionMeasureException &&
                                 ERROR_SEARCH_PRO_MEASURE_CODE.equals(((ProtectionMeasureException) e).getCode()),
                         e -> Mono.just(protectionMeasure))
                 .onErrorMap(e-> !(e instanceof ProtectionMeasureException),
-                        e -> new ProtectionMeasureException(ERROR_RUNTIME_CODE,"Error validando medidas de protección previas"));
+                        e -> new ProtectionMeasureException(ERROR_RUNTIME_CODE,"Error validando medidas de protección existentes"));
     }
 
     private ProtectionMeasure prepareProMeasure(ProtectionMeasure protectionMeasure) {
