@@ -20,7 +20,4 @@ public class ApiStartRequestData {
     @NotEmpty(message = "El campo documentNumber no fue suministrado")
     private String documentNumber;
 
-    @NotEmpty(message = "El campo contactInfo no fue suministrado")
-    private String contactInfo;
-
 }

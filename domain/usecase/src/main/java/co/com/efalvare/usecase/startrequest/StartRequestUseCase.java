@@ -32,7 +32,6 @@ public class StartRequestUseCase {
                 .ip(request.getIp())
                 .documentNumber(request.getDocumentNumber())
                 .documentType(request.getDocumentType())
-                .contactInfo(request.getContactInfo())
                 .build();
     }
 

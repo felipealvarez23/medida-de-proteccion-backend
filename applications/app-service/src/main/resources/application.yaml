@@ -12,14 +12,13 @@ spring:
   config:
     activate:
       on-profile: dev-local
-
 server:
   port: 8080
 app:
-  allowedOrigins: "localhost:4200"
+  allowedOrigins: "http://localhost:4200"
 db:
   schema: "pm_schema"
-  password: ""
+  password: "Delta231092#!."
   dbname: "protection_measure_db"
   port: "5432"
   host: "localhost"
@@ -30,7 +29,6 @@ spring:
   config:
     activate:
       on-profile: pnd
-
 server:
   port: 8080
 app:
@@ -40,4 +38,3 @@ db:
   secret:
     region: "us-east-1"
     name: "aws/secret-manager/medida-de-proteccion"
-    url: jdbc:postgresql://%s:%s/%s?currentSchema=protection_measure_schema

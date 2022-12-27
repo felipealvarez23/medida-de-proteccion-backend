@@ -36,7 +36,7 @@ public class ProtectionMeasureUseCase {
                 .map(proMeasure -> protectionMeasure)
                 .switchIfEmpty(Mono.error(() -> new ProtectionMeasureException(ERROR_ALREADY_EXIST_CODE,ERROR_ALREADY_EXIST)))
                 .doOnError(e -> e instanceof ProtectionMeasureException && ERROR_ALREADY_EXIST_CODE.equals(((ProtectionMeasureException) e).getCode()),
-                        e -> LOGGER.log(Level.SEVERE, "Ya se ha iniciado una solicitud recientemente con el numero de documento [{}]",
+                        e -> LOGGER.log(Level.SEVERE, "Ya se ha iniciado una solicitud recientemente con el numero de documento [{0}]",
                                 protectionMeasure.getDocumentNumber()))
                 .onErrorResume(e -> e instanceof ProtectionMeasureException &&
                                 ERROR_SEARCH_PRO_MEASURE_CODE.equals(((ProtectionMeasureException) e).getCode()),

@@ -15,6 +15,5 @@ public class StartRequest {
     private String type;
     private String documentType;
     private String documentNumber;
-    private String contactInfo;
     private String ip;
 }

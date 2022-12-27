@@ -37,7 +37,7 @@ public class StartRequestHandler extends HandlerHelper<ApiStartRequest> {
     }
 
     public Mono<ServerResponse> startRequest(ServerRequest request) {
-        log.info("Start [start-request] operation");
+        log.info("Solicitud recibida sobre la operacion [start-request]");
         return validateRequest(request)
                 .map(ApiStartRequest::getData)
                 .map(mapper::mapperToEntity)
